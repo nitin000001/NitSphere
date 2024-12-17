@@ -7,77 +7,100 @@ import { PinData } from "../context/PinContext";
 
 const Login = () => {
   const [Email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+  const [password, setPassword] = useState("");
 
   const { loginUser, btnLoading } = UserData();
   const navigate = useNavigate();
-
-  const {fetchPins} = PinData();
+  const { fetchPins } = PinData();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(Email, password, navigate, fetchPins);
-
     setEmail("");
-    setpassword("");
+    setPassword("");
   };
 
   return (
-    <div className="w-full h-[88vh] flex items-center justify-center">
-      <div>
-        <form
-          onSubmit={handleSubmit}
-          className="border-2 flex flex-col items-center w-[33vw] h-[500px] bg-white shadow-xl rounded-xl overflow-hidden p-10"
-        >
-          <Logo />
-          <h1 className="text-3xl font-semibold tracking-tighter text-center mb-7 flex flex-col items-center gap-2">
-            Welcome's you 
+    <div className="flex items-center justify-center mt-10 h-screen px-4 bg-gray-50">
+      {/* Form Container */}
+      <div className="w-full max-w-[400px] md:max-w-[450px] bg-white shadow-lg rounded-lg p-6 md:p-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* Logo */}
+          <div className="flex justify-center mb-4">
+            <Logo />
+          </div>
+
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Welcome Back
           </h1>
-          <div className="w-3/4">
-            <label htmlFor="email" className="block ">
-              Email address
+
+          {/* Email Input */}
+          <div className="flex flex-col gap-1">
+            <label htmlFor="email" className="text-sm font-semibold">
+              Email Address
             </label>
             <input
+              id="email"
+              type="email"
               value={Email}
               onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              placeholder="Email"
-              className="border-2 outline-none w-full px-3 py-1 rounded-lg"
+              placeholder="Enter your email"
+              className="w-full border-2 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400 transition-all"
             />
-            <label htmlFor="password" className="block mt-2">
+          </div>
+
+          {/* Password Input */}
+          <div className="flex flex-col gap-1">
+            <label htmlFor="password" className="text-sm font-semibold">
               Password
             </label>
             <input
-              value={password}
-              onChange={(e) => setpassword(e.target.value)}
+              id="password"
               type="password"
-              placeholder="Password"
-              className="border-2 outline-none w-full px-3 py-1 rounded-lg"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              className="w-full border-2 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400 transition-all"
             />
           </div>
-          <a
-            href="#"
-            className="block font-semibold text-sm mt-2 hover:underline"
-          >
-            Forgot your password?
-          </a>
+
+          {/* Forgot Password */}
+          <div className="text-right">
+            <a
+              href="#"
+              className="text-blue-500 text-sm font-semibold hover:underline"
+            >
+              Forgot Password?
+            </a>
+          </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
-            className="bg-blue-500 block w-2/3 px-3 py-1 rounded-full mt-4 mb-6 hover:bg-blue-700 text-white"
+            className="w-full bg-blue-500 text-white font-semibold py-2 rounded-full hover:bg-blue-600 transition-all duration-300"
             disabled={btnLoading}
           >
             {btnLoading ? <LoadingAnimation /> : "Login"}
           </button>
-          <p className=" w-full text-center text-sm">
-            By continuing, you agree to NitSphere's Terms of Service and
-            acknowledge that you've read our Privacy Policy.
-            <span className="text-center text-sm">Notice at collection.</span>
+
+          {/* Terms and Conditions */}
+          <p className="text-xs text-center text-gray-600">
+            By continuing, you agree to NitSphere's{" "}
+            <span className="font-semibold">Terms of Service</span> and{" "}
+            <span className="font-semibold">Privacy Policy</span>.
           </p>
-          <hr className="w-1/2 m-auto mt-5 items-center" />
-          <p className="text-sm font-semibold ">
-            Not on Pinterest yet?
-            <Link to="/register" className="hover:text-blue-700 ">
-              register
+
+          {/* Divider */}
+          <hr className="my-2 border-gray-300" />
+
+          {/* Register Redirect */}
+          <p className="text-sm text-center font-semibold">
+            New here?{" "}
+            <Link
+              to="/register"
+              className="text-blue-500 hover:underline font-semibold"
+            >
+              Register
             </Link>
           </p>
         </form>
