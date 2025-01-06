@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { PinData } from "../context/PinContext";
-import PinCard from "../components/PinCard"; 
+import PinCard from "../components/PinCard";
 import { UserData } from "../context/UserContext";
 
 const UserProfile = ({ user: loggedInUser }) => {
   const params = useParams();
-  const [user, setUser] = useState({}); 
+  const [user, setUser] = useState({});
   const [isFollow, setIsFollow] = useState(false);
-  const  {followUser} = UserData();
+  const { followUser } = UserData();
 
   // Fetch user data
   async function fetchUser() {
@@ -22,18 +22,17 @@ const UserProfile = ({ user: loggedInUser }) => {
   }
 
   const followHandler = () => {
-    setIsFollow((prevState) => !prevState); // Toggle follow 
+    setIsFollow((prevState) => !prevState); // Toggle follow
     followUser(user._id, fetchUser);
   };
 
-  const followers = user.followers
+  const followers = user.followers;
 
   useEffect(() => {
     if (followers && followers.includes(loggedInUser._id)) {
-        setIsFollow(true)
+      setIsFollow(true);
     }
-  }, [user])
-  
+  }, [user]);
 
   const { pins } = PinData();
 
@@ -79,12 +78,16 @@ const UserProfile = ({ user: loggedInUser }) => {
 
             {/* Follow/Unfollow Button */}
             <div className="flex justify-center mt-4 space-x-2">
-              <button
-                onClick={followHandler}
-                className="bg-gray-300 px-4 py-2 font-semibold rounded"
-              >
-                {isFollow ? "Unfollow" : "Follow"}
-              </button>
+              {user && user_.id === loggedInUser._id ? (
+                ""
+              ) : (
+                <button
+                  onClick={followHandler}
+                  className="bg-gray-300 px-4 py-2 font-semibold rounded"
+                >
+                  {isFollow ? "Unfollow" : "Follow"}
+                </button>
+              )}
             </div>
 
             {/* User Pins */}
