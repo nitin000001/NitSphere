@@ -66,7 +66,7 @@ export const getSinglePin = async (req, res) => {
 
 export const commentOnPin = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log(req.body, "hello");
 
     const pin = await Pin.findById(req.params.id);
     if (!pin) return res.status(400).json({ message: "No pin with this id " });
@@ -83,6 +83,38 @@ export const commentOnPin = async (req, res) => {
   } catch (error) {
     console.error("Error adding comment:", error);
     res.status(500).json({ message: "Unable to add comment" });
+  }
+};
+
+export const deleteComment = async (req, res) => {
+  try {
+    const pin = await Pin.findById(req.params.id);
+
+    if (!pin) return res.status(400).json({ message: "No pin with this id" });
+
+    if (!req.query.commentId)
+      return res.status(404).json({ message: "please give comment id" });
+
+    const commentIndex = pin.comments.findIndex(
+      (item) => item._id.toString() === req.query.commentId.toString()
+    );
+
+    if (commentIndex === -1)
+      return res.status(404).json({ message: "Comment not found" });
+
+    const comment = pin.comments[commentIndex];
+
+    if (comment.user.toString() === req.user._id.toString()) {
+      pin.comments.splice(commentIndex, 1);
+
+      await pin.save();
+
+      return res.json({ message: "Comment deleted!" });
+    }else{
+      return res.status(403).json({message : "You are not owner of this comment"})
+    }
+  } catch (error) {
+    res.status(500).json({ message: "comment not deleted", error: error.message });
   }
 };
 
@@ -118,7 +150,6 @@ export const deletePin = async (req, res) => {
 
 export const updatePin = async (req, res) => {
   try {
-
     const pin = await Pin.findById(req.params.id);
     if (!pin) {
       return res.status(404).json({ message: "No pin found with this ID" });
@@ -133,7 +164,9 @@ export const updatePin = async (req, res) => {
 
     const updatedPin = await pin.save();
 
-    res.status(200).json({ message: "Pin updated successfully!", pin: updatedPin });
+    res
+      .status(200)
+      .json({ message: "Pin updated successfully!", pin: updatedPin });
   } catch (error) {
     res.status(500).json({ message: "Pin not updated", error: error.message });
   }

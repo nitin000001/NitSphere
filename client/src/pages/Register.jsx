@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserData } from "../context/UserContext";
 import { LoadingAnimation } from "../components/LoadingAnimation";
 import { TfiPinterestAlt } from "react-icons/tfi";
-import Logo from "../components/Logo";
+import Logo from "../assets/logo.avif";
 import { PinData } from "../context/PinContext";
 
 const Register = () => {
@@ -26,8 +26,102 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full h-[70%] mt-3 text-black flex items-center justify-center">
-      <div>
+    <>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <div className="flex justify-center mb-4 ">
+              <img src={Logo} alt="Logo" className="h-12 rounded-full" />
+            </div>
+            <h2 className="text-2xl font-semibold text-center mb-6">
+              Welcome to NitScape
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Name
+                </label>
+                <input
+                  onChange={(e) => setUserName(e.target.value)}
+                  value={UserName}
+                  required
+                  type="text"
+                  id="name"
+                  className="common-input"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email
+                </label>
+                <input
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={Email}
+                  required
+                  type="email"
+                  id="email"
+                  className="common-input"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Password
+                </label>
+                <input
+                  onChange={(e) => setpassword(e.target.value)}
+                  value={password}
+                  required
+                  type="password"
+                  id="password"
+                  className="common-input"
+                />
+              </div>
+              <button type="submit" className="common-btn" disabled={btnLoading}>
+                {
+                  btnLoading ? <LoadingAnimation /> : "Register"
+                }
+              </button>
+            </form>
+            <div className="mt-6 text-center">
+              <div className="relative mb-4">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300 "></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="bg-white px-2 text-gray-500">OR</span>
+                </div>
+              </div>
+              <div className="mt-4 text-center text-sm">
+                <span>
+                  Already have an account on NitScape  ?
+                  <Link
+                    to="/login"
+                    className="font-medium text-pinterest hover:underline"
+                  >
+                    Login
+                  </Link>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </>
+  );
+};
+
+export default Register;
+
+
+/* <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div  >
         <form
           onSubmit={handleSubmit}
           className="border-2 flex flex-col bg-white items-center w-[450px] h-[540px] shadow-xl rounded-xl py-5 "
@@ -96,7 +190,4 @@ const Register = () => {
         </form>
       </div>
     </div>
-  );
-};
-
-export default Register;
+    **/

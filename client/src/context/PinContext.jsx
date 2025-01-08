@@ -70,7 +70,7 @@ export const PinProvider = ({ children }) => {
   async function deletePin(id, navigate) {
     setLoading(true);
     try {
-      const { data } = await axios.delete(`/api/pin/${id}`);
+      const { data } = await axios.delete(`/api/pin/comment/${id}`);
       toast.success(data.message);
       navigate("/");
       setLoading(false);

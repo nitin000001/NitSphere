@@ -38,9 +38,11 @@ const Navbar = ({ user }) => {
             </Link>
 
             <Link to="/account" onClick={() => handleSetActive("/account")}>
-              <span className="flex items-center justify-center bg-gray-700 hover:text-gray-900 h-8 w-8 rounded-full shadow-xl p-2 text-red-500">
-                {user.name.slice(0, 1)}
-              </span>
+             {
+              user &&  <span className="flex items-center justify-center bg-gray-700 hover:text-gray-900 h-8 w-8 rounded-full shadow-xl p-2 text-red-500">
+              {user.name.slice(0, 1)}
+            </span>
+             }
             </Link>
           </li>
         </ul>

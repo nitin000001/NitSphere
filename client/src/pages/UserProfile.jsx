@@ -78,8 +78,8 @@ const UserProfile = ({ user: loggedInUser }) => {
 
             {/* Follow/Unfollow Button */}
             <div className="flex justify-center mt-4 space-x-2">
-              {user && user_.id === loggedInUser._id ? (
-                ""
+              {user && user.id === loggedInUser._id ? (
+                "hellos"
               ) : (
                 <button
                   onClick={followHandler}

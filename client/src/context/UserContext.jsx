@@ -60,7 +60,7 @@ export const UserProvider = ({ children }) => {
 
    const followUser = async (id, fetchUser) => {
     try {
-      const { data } = await axios.post(`/api/user/follow/${id}`);
+      const { data } = await axios.get(`/api/user/follow/${id}`);
       toast.success(data.message);
       fetchUser();
     } catch (error) {
