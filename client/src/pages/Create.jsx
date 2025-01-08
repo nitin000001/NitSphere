@@ -41,8 +41,9 @@ const Create = () => {
 
   return (
     <div>
+          <h2 className="text-center m-4 font-bold text-gray-500">Note: <br /> <span>After creating the pin don't forget to refresh the page</span> </h2>
       <div className="flex flex-wrap justify-center items-center gap-2 mt-10">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center ">
           <div className="flex flex-col items-center justify-center w-80 h-auto p-6 bg-white rounded-lg shadow-lg">
             {filePrev && (
               <img

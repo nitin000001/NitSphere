@@ -44,7 +44,7 @@ const Account = ({ user }) => {
           <h1 className="text-center text-2xl text-gray-500 font-bold mt-5">
             {user.name}
           </h1>
-          <p className="text-center text-2xl text-gray-500 font-bold ">
+          <p className="text-center  text-gray-500 text-sm ">
             {user.email}
           </p>
           <div className="flex justify-center mt-4 space-x-2">
