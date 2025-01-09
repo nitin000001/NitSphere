@@ -153,16 +153,19 @@ const PinPage = ({ user }) => {
                   </div>
                 )}
                 {/* this section for comment input adding and updating it */}
-                <div className="flex items-center mt-4">
-                  <div className="rounded-full h-12 w-12 bg-gray-300 flex  items-center justify-center mr-4">
-                    <span className="font-bold ">
+                <div className="flex flex-col sm:flex-row items-center mt-4">
+                  <div className="rounded-full h-12 w-12 bg-gray-300 flex items-center justify-center mr-0 sm:mr-4 mb-2 sm:mb-0">
+                    <span className="font-bold">
                       {pin.owner && pin.owner.name.slice(0, 1)}
                     </span>
                   </div>
-                  <form className="flex flex-1  " onSubmit={submitHandler}>
+                  <form
+                    className="flex flex-col sm:flex-row flex-1 w-full sm:w-auto"
+                    onSubmit={submitHandler}
+                  >
                     <input
                       type="text"
-                      className="flex-1 border rounded-lg p-2"
+                      className="flex-1 border border-gray-300 rounded-lg p-2 text-sm sm:text-base mb-2 sm:mb-0"
                       placeholder="Enter comment"
                       required
                       value={comment}
@@ -170,7 +173,7 @@ const PinPage = ({ user }) => {
                     />
                     <button
                       type="submit"
-                      className="ml-2 bg-red-500 px-4 py-2 rounded-md text-white"
+                      className="ml-0 sm:ml-2 bg-red-500 px-4 py-2 rounded-md text-white text-sm sm:text-base"
                     >
                       Add+
                     </button>
