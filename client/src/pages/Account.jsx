@@ -36,7 +36,7 @@ const Account = ({ user }) => {
         <div className="p-6 w-full">
           <div className="flex items-center justify-center">
             <div className="w-14 h-14 rounded-full bg-gray-500 flex items-center justify-center">
-              <span className="text-white font-semibold text-xl">
+              <span className="text-white font-semibold text-2xl text-center">
                 {user.name.slice(0, 1)}
               </span>
             </div>
@@ -47,6 +47,10 @@ const Account = ({ user }) => {
           <p className="text-center  text-gray-500 text-sm ">
             {user.email}
           </p>
+          <div className="flex justify-center items-center text-center text-2xl gap-4 text-gray-500 font-bold">
+              <p>{user.followers?.length || 0} followers</p> <span className="font-light text-black">|</span>
+              <p>{user.followings?.length || 0} followings</p>
+            </div>
           <div className="flex justify-center mt-4 space-x-2">
             <button
               onClick={logOutHandler}
