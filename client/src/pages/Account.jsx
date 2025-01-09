@@ -48,7 +48,8 @@ const Account = ({ user }) => {
             {user.email}
           </p>
           <div className="flex justify-center items-center text-center text-2xl gap-4 text-gray-500 font-bold">
-              <p>{user.followers?.length || 0} followers</p> <span className="font-light text-black">|</span>
+              <p>{user.followers?.length || 0} followers</p> 
+              <span className="font-light text-black">|</span>
               <p>{user.followings?.length || 0} followings</p>
             </div>
           <div className="flex justify-center mt-4 space-x-2">

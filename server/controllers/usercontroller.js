@@ -1,5 +1,5 @@
 import userModel from "../models/userModel.js";
-import bcryptjs from "bcryptjs";
+import bcrypt from "bcrypt";
 import { generateTokens } from "../utils/generateTokens.js";
 
 export const registerUser = async (req, res) => {
@@ -14,7 +14,7 @@ export const registerUser = async (req, res) => {
     }
 
     // Hashing the password
-    const hashedPassword = await bcryptjs.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Creating the new user
     user = await userModel.create({
@@ -45,7 +45,7 @@ export const loginUser = async (req, res) => {
         .status(400)
         .json({ message: "User not exist. Please register!" });
 
-    const comparedPassword = await bcryptjs.compare(password, user.password);
+    const comparedPassword = await bcrypt.compare(password, user.password);
 
     if (!comparedPassword)
       return res.status(400).json({ message: "Invalid Credintials" });
