@@ -7,7 +7,7 @@ export default defineConfig({
   server : {
     proxy : {
       "/api":{
-        target : "https://nitsphere-backend.onrender.com",
+        target : "http://localhost:4000",
       }
     }
   }
